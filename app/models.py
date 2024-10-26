@@ -20,6 +20,8 @@ class Campaign(db.Model):
     name = db.Column(db.String(20), unique = True)
     exp_range = db.Column(db.String(20))
     start_date = db.Column(db.Date, default=datetime.utcnow)
+    active_campaign = db.Column(db.Boolean, default = True)
+    
     datasets = db.relationship("Dataset", back_populates="campaign")
     
     

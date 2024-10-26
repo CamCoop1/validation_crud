@@ -4,5 +4,20 @@
     <h1>Datasets available for validation</h1>
 
    {% include "tables/datasets_table.html" %}
-
+   <h2>Add new dataset</h2>
+   <form action="" method="POST" novalidate>
+       {{ form.hidden_tag() }}
+       <p>
+           {{ form.collection_lpn.label }}<br>
+           {{ form.collection_lpn(size=32) }}<br>
+           {% for error in form.collection_lpn.errors %}
+           <span style="color: red;">[{{ error }}]</span>
+           {% endfor %}
+       </p>
+       <p>
+           {{ form.campaign.label }}<br>
+           {{ form.campaign(size=32) }}<br>
+       </p>
+       <p>{{ form.submit() }}</p>
+   </form>
 {% endblock %}

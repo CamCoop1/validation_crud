@@ -6,7 +6,9 @@ from sqlalchemy import (
     Integer,
     String,
     Date,   
-    ForeignKey     
+    ForeignKey,
+    Boolean
+        
 )
 
 class Campaign(Base):
@@ -28,8 +30,21 @@ class Campaign(Base):
     name = Column(String(20), unique = True)
     exp_range = Column(String(20))
     start_date = Column(Date, default=datetime.utcnow)
+    active_campaign = Column(Boolean, default=True)
     datasets = relationship("Dataset", back_populates="campaign")
     
+    @property
+    def start(self):
+        return int(self.experiment_range.split('-')[0])
+
+    @property
+    def end(self):
+        parts = self.experiment_range.split('-')
+        return int(parts[1]) if len(parts) > 1 else self.start
+
+    @property
+    def is_range(self):
+        return '-' in self.experiment_range
     def __repr__(self):
         return f"<Campaign Name: {self.name}, exp_range: {self.exp_range}>"
     

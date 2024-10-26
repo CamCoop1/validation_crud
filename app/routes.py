@@ -1,6 +1,6 @@
 from flask import render_template, request, flash, redirect, url_for
 from app import app, db, models
-from app.forms import AddCampaign, DeleteCampaign
+from app.forms import AddCampaign, AddDataset
 import sqlalchemy as sa
 from datetime import datetime
 
@@ -16,7 +16,6 @@ def index():
 def campaigns(id=None):
     form = AddCampaign()
     if form.validate_on_submit():
-        print(form.start_date.data)
         campaign = models.Campaign(name=form.name.data, exp_range = form.exp_range.data, start_date=form.start_date.data)
         db.session.add(campaign)
         db.session.commit()
@@ -30,12 +29,25 @@ def campaigns(id=None):
     return render_template("campaigns.html", campaigns=campaigns, form=form, campaign_group=True)
 
 @app.route("/datasets/<id>")
-@app.route("/datasets")
+@app.route("/datasets", methods=["GET", "POST"])
 def datasets(id=None):
-    campaigns = models.Campaign.query.all()
+    campaign  = models.Campaign.query.all()
+    form = AddDataset()
+    if form.validate_on_submit():
+        
+        campaign = models.Campaign.query.filter_by(name=form.campaign.data).first()
+        dataset = models.Dataset(
+            collection_lpn = form.collection_lpn.data,
+            date_added = datetime.utcnow(),
+            campaign = campaign
+        )
+        db.session.add(dataset)
+        db.session.commit()
+        flash("New dataset added")
+        return redirect(url_for("datasets"))
     if id:
         datasets = models.Dataset.query.filter_by(id=id).all()
-        return render_template("datasets.html", datasets=datasets, campaigns = campaigns)
+        return render_template("datasets.html", datasets=datasets, campaigns = campaign)
     
     datasets = models.Dataset.query.all()
-    return render_template("datasets.html", datasets=datasets, campaigns=campaigns)
+    return render_template("datasets.html", datasets=datasets, campaigns=campaign, form=form)

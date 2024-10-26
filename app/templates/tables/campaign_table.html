@@ -4,6 +4,7 @@
         <th>Name</th>
         <th>Start Date</th>
         <th>Exp Range</th>
+        <th>Active</th>
         <th> Datasets </th>
 
     </tr>
@@ -18,7 +19,9 @@
         <td>
             {{ campaign.exp_range}}
         </td>
-      
+        <td>
+            {{ campaign.active_campaign}}
+        </td>
         <td>
             {% for dataset in campaign.datasets%}
                 <ul>

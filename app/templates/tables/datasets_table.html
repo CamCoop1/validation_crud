@@ -1,0 +1,19 @@
+
+{% for campaign in campaigns %}
+    <h2><a href={{ url_for("campaigns", id=campaign.id)}}> {{campaign.name}}</a> </h2>
+    <table>
+        <tr>
+            <th>Collection LPN</th>
+            <th>Data Added</th>
+            <th>Campaign</th>
+        </tr>
+        {% for dataset in datasets %}
+            {% if dataset.campaign.id == campaign.id %}
+            <tr>
+                <td>{{ dataset.collection_lpn }}</td>
+                <td>{{ dataset.date_added }}</td>
+            </tr>
+            {% endif %}
+        {%  endfor %}
+{% endfor %}
+</table>

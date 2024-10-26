@@ -19,7 +19,9 @@ class Campaign(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20), unique = True)
     exp_range = db.Column(db.String(20))
+    start_date = db.Column(db.Date, default=datetime.utcnow)
     datasets = db.relationship("Dataset", back_populates="campaign")
+    
     
     def __repr__(self):
         return f"<Campaign Name: {self.name}, exp_range: {self.exp_range}>"

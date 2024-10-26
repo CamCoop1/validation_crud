@@ -1,0 +1,35 @@
+<h2>Campaigns</h2>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>Exp Range</th>
+        <th> Datasets </th>
+
+    </tr>
+    {% for campaign in campaigns %}
+    <tr class="clickable-row">
+        <td>
+            <a href="{{ url_for('campaigns', id=campaign.id) }}">{{ campaign.name }}</a>
+        </td>
+        <td>
+            {{ campaign.start_date}}
+        </td>
+        <td>
+            {{ campaign.exp_range}}
+        </td>
+      
+        <td>
+            {% for dataset in campaign.datasets%}
+                <ul>
+                    <li> 
+                        <a href= {{ url_for('datasets', id=dataset.id)}}> {{ dataset.collection_lpn }}</a>
+                    </li>
+                </ul>
+            {% endfor %}
+        </td>
+
+  
+    </tr>
+    {%  endfor %}
+</table>

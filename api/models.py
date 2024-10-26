@@ -27,10 +27,12 @@ class Campaign(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(20), unique = True)
     exp_range = Column(String(20))
+    start_date = Column(Date, default=datetime.utcnow)
     datasets = relationship("Dataset", back_populates="campaign")
     
     def __repr__(self):
         return f"<Campaign Name: {self.name}, exp_range: {self.exp_range}>"
+    
 
 class Dataset(Base):
     __tablename__ = "Dataset"

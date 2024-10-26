@@ -4,5 +4,32 @@
     <h1>Campaigns available for validation</h1>
 
    {% include "tables/campaign_table.html" %}
-
+   {% if campaign_group %}
+    <h2>Add new campaign</h2>
+    <form action="" method="POST" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.name.label }}<br>
+            {{ form.name(size=32) }}<br>
+            {% for error in form.name.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.exp_range.label }}<br>
+            {{ form.exp_range(size=32) }}<br>
+            {% for error in form.exp_range.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.start_date.label }}<br>
+            {{ form.start_date(size=32) }}<br>
+            {% for error in form.exp_range.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    {% endif %}
 {% endblock %}

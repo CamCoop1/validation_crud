@@ -21,7 +21,7 @@ setup(
     author="Cameron Harris",
     author_email='cam.cooper.harris@gmail.com',
     url='https://github.com/CamCoop1/validation_app',
-    packages=['./'],
+    packages=find_packages(["*"]),
     entry_points={
         'console_scripts': [
             'validation_app=validation_app.cli:main'

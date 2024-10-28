@@ -28,7 +28,7 @@ setup(
         ]
     },
     include_package_data=True,
-    requires=requirements,
+    #requires=requirements,
     license="MIT license",
     zip_safe=False,
     keywords='validation_app',

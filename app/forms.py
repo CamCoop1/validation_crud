@@ -22,13 +22,13 @@ class UpdateCampaign(FlaskForm):
     submit = SubmitField('Add')
 
 class AddDataset(FlaskForm):
-    
     collection_lpn = StringField('Collection LPN', validators=[DataRequired()])
     campaign = SelectField(
-        'Campaign', 
-        validators=[DataRequired()],
-        choices=[(camp.name, camp.name) for camp in models.Campaign.query.all() ]                
+            'Campaign', 
+            validators=[DataRequired()]
     )
     submit = SubmitField('Add')
     
+    def __call__(self, campaign_list):
+        self.campaign.choices = [(camp.name, camp.name) for camp in campaign_list]                
  

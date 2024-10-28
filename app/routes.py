@@ -20,6 +20,7 @@ def campaigns(id=None):
         db.session.add(campaign)
         db.session.commit()
         flash("New campaign added")
+        db.session.close()
         return redirect(url_for("campaigns"))
     if id:
         campaigns = models.Campaign.query.filter_by(id=id).all()
@@ -31,8 +32,9 @@ def campaigns(id=None):
 @app.route("/datasets/<id>")
 @app.route("/datasets", methods=["GET", "POST"])
 def datasets(id=None):
-    campaign  = models.Campaign.query.all()
+    campaigns  = models.Campaign.query.all()
     form = AddDataset()
+    form(campaign_list=campaigns)
     if form.validate_on_submit():
         
         campaign = models.Campaign.query.filter_by(name=form.campaign.data).first()
@@ -44,13 +46,14 @@ def datasets(id=None):
         db.session.add(dataset)
         db.session.commit()
         flash("New dataset added")
+        db.session.close()
         return redirect(url_for("datasets"))
     if id:
         datasets = models.Dataset.query.filter_by(id=id).all()
-        return render_template("datasets.html", datasets=datasets, campaigns = campaign)
+        return render_template("datasets.html", datasets=datasets, campaigns = campaigns)
     
     datasets = models.Dataset.query.all()
-    return render_template("datasets.html", datasets=datasets, campaigns=campaign, form=form)
+    return render_template("datasets.html", datasets=datasets, campaigns=campaigns, form=form)
 
 
 @app.route("/update/campaign/<id>")

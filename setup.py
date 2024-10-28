@@ -11,6 +11,7 @@ with open('README.rst') as readme_file:
 with open("requirements.txt", "r") as f:
     requirements = f.read().splitlines()
 
+print(requirements)
 
 setup(
     name='validation_app',
@@ -27,7 +28,7 @@ setup(
         ]
     },
     include_package_data=True,
-    install_requires=requirements,
+    requires=requirements,
     license="MIT license",
     zip_safe=False,
     keywords='validation_app',

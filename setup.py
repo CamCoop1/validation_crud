@@ -11,15 +11,6 @@ with open('README.rst') as readme_file:
 with open("requirements.txt", "r") as f:
     requirements = f.read().splitlines()
 
-setup_requirements = [
-    'pytest-runner',
-    # TODO(CamCoop1): put setup requirements (distutils extensions, etc.) here
-]
-
-test_requirements = [
-    'pytest',
-    # TODO: put package test requirements here
-]
 
 setup(
     name='validation_app',
@@ -53,7 +44,4 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
     ],
-    test_suite='tests',
-    tests_require=test_requirements,
-    setup_requires=setup_requirements,
 )

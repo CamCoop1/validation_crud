@@ -16,7 +16,5 @@ PyMySQL==0.6.6
 python-dotenv==1.0.1
 six==1.9.0
 SQLAlchemy==2.0.36
-typing_extensions==4.12.2
--e git+https://github.com/CamCoop1/validation_crud.git@a1ddb4cf6d33131150ca10a4c3dad1e38f6d9026#egg=validation_app
 Werkzeug==3.0.5
 WTForms==3.2.1

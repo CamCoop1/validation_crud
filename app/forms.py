@@ -10,6 +10,13 @@ from datetime import datetime
 
 class AddCampaign(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
+    exp_range = StringField('Experiment Range', validators=[DataRequired()], description="Range of experiments")
+    start_date = DateField('Start Date', default=datetime.utcnow )
+    submit = SubmitField('Add')
+
+
+class UpdateCampaign(FlaskForm):
+
     exp_range = StringField('Experiment Range', validators=[DataRequired()])
     start_date = DateField('Start Date', default=datetime.utcnow )
     submit = SubmitField('Add')
@@ -20,7 +27,7 @@ class AddDataset(FlaskForm):
     campaign = SelectField(
         'Campaign', 
         validators=[DataRequired()],
-        choices=[(camp.name, camp.name) for camp in db.session.query(models.Campaign).all() ]                
+        choices=[(camp.name, camp.name) for camp in models.Campaign.query.all() ]                
     )
     submit = SubmitField('Add')
     

@@ -1,6 +1,6 @@
 from flask import render_template, request, flash, redirect, url_for
 from app import app, db, models
-from app.forms import AddCampaign, AddDataset
+from app.forms import AddCampaign, AddDataset, UpdateCampaign
 import sqlalchemy as sa
 from datetime import datetime
 
@@ -51,3 +51,9 @@ def datasets(id=None):
     
     datasets = models.Dataset.query.all()
     return render_template("datasets.html", datasets=datasets, campaigns=campaign, form=form)
+
+
+@app.route("/update/campaign/<id>")
+def update_campaign(id):
+    form = UpdateCampaign()
+    return redirect(url_for("campaign"))

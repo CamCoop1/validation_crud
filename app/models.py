@@ -26,7 +26,7 @@ class Campaign(db.Model):
     
     
     def __repr__(self):
-        return f"<Campaign Name: {self.name}, exp_range: {self.exp_range}>"
+        return f"<Campaign Name: {self.name}, exp_range: {self.exp_range}, active: {self.active_campaign}>"
 
 class Dataset(db.Model):
     __tablename__ = "Dataset"

@@ -1,0 +1,22 @@
+alembic==1.13.3
+blinker==1.8.2
+click==8.1.7
+Flask==3.0.3
+Flask-Migrate==4.0.7
+Flask-SQLAlchemy==3.1.1
+Flask-WTF==1.2.2
+greenlet==3.1.1
+itsdangerous==2.2.0
+Jinja2==3.1.4
+Mako==1.3.6
+MarkupSafe==3.0.2
+Paginator==0.2.0
+pg8000==1.10.2
+PyMySQL==0.6.6
+python-dotenv==1.0.1
+six==1.9.0
+SQLAlchemy==2.0.36
+typing_extensions==4.12.2
+-e git+https://github.com/CamCoop1/validation_crud.git@a1ddb4cf6d33131150ca10a4c3dad1e38f6d9026#egg=validation_app
+Werkzeug==3.0.5
+WTForms==3.2.1

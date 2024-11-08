@@ -1,5 +1,12 @@
 from app import db
 from datetime import datetime 
+from enum import Enum, auto
+
+class VIBEGroups(Enum):
+    tracking = 'tracking'
+    physics = 'physics'
+    slme = 'slme'
+    neutrals = 'neutrals'
 
 class Campaign(db.Model):
     """
@@ -40,3 +47,13 @@ class Dataset(db.Model):
     
     def __repr__(self):
         return f'<Campaign: {self.campaign}, collection LPN: {self.collection_lpn}>'
+
+class Mode(db.Model):
+    __tablename__ = "Mode"
+    
+    id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String(20), unique=True)
+    group = db.Column(db.Enum(VIBEGroups), nullable=False, default=VIBEGroups.physics)
+    
+    def __repr__(self):
+        return f"<Name: {self.name}, Group: {self.group}>"

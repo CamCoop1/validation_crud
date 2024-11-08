@@ -50,7 +50,9 @@ def datasets(id=None):
         return redirect(url_for("datasets"))
     if id:
         datasets = models.Dataset.query.filter_by(id=id).all()
-        return render_template("datasets.html", datasets=datasets, campaigns = campaigns)
+        specific_campaign = [datasets[0].campaign]
+        form(campaign_list=specific_campaign)
+        return render_template("datasets.html", datasets=datasets, campaigns = specific_campaign, form=form)
     
     datasets = models.Dataset.query.all()
     return render_template("datasets.html", datasets=datasets, campaigns=campaigns, form=form)
